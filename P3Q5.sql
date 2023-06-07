@@ -1,0 +1,9 @@
+SELECT country, sum(goals) Total_Goals
+FROM (SELECT DISTINCT p.COUNTRY, g.NUMBER,count(g.OCCURANCE) goals
+      FROM PLAYERSINGAME p, Matches m,GOALSSCORED g
+      WHERE p.IDENTIFIER=m.IDENTIFIER and g.IDENTIFIER=p.IDENTIFIER AND m.ROUND='Group' AND g.NUMBER=p.NUMBER
+      GROUP BY p.COUNTRY, g.NUMBER)
+GROUP BY country
+ORDER BY Total_Goals desc
+    LIMIT 5
+;

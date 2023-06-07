@@ -1,0 +1,66 @@
+(c) Copyright IBM Corporation 1993,2007
+Command Line Processor for DB2 Client 11.5.8.0
+
+You can issue database manager commands and SQL statements from the command 
+prompt. For example:
+    db2 => connect to sample
+    db2 => bind sample.bnd
+
+For general help, type: ?.
+For command help, type: ? command, where command can be
+the first few keywords of a database manager command. For example:
+ ? CATALOG DATABASE for help on the CATALOG DATABASE command
+ ? CATALOG          for help on all of the CATALOG commands.
+
+To exit db2 interactive mode, type QUIT at the command prompt. Outside 
+interactive mode, all commands must be prefixed with 'db2'.
+To list the current command option settings, type LIST COMMAND OPTIONS.
+
+For more detailed help, refer to the Online Reference Manual.
+
+db2 => db2 => db2 => db2 => db2 => CONNECT TO cs421
+
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 11.5.8.0
+ SQL authorization ID   = CS421G13...
+ Local database alias   = CS421
+
+
+db2 => db2 => db2 => db2 => db2 => db2 => db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Stadiums ( stadiumName VARCHAR (50) NOT NULL ,capacity INTEGER ,location VARCHAR (50) ,directions VARCHAR (50) ,vipPrice FLOAT ,food VARCHAR (50) ,PRIMARY KEY (stadiumName) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Matches ( identifier INTEGER NOT NULL ,priceMultiplier FLOAT ,length VARCHAR (50) ,dateTime DATETIME ,round VARCHAR (50) ,stadiumName VARCHAR (50) ,PRIMARY KEY (identifier) ,FOREIGN KEY (stadiumName) REFERENCES Stadiums(stadiumName) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Team ( country VARCHAR (25) NOT NULL ,name VARCHAR (50) ,URL VARCHAR (50) ,group CHAR(1) ,stadiumName VARCHAR (50) ,identifier INTEGER ,PRIMARY KEY (country) ,FOREIGN KEY (stadiumName) REFERENCES Stadiums(stadiumName) ,FOREIGN KEY (identifier) REFERENCES Matches(identifier) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Players ( number INTEGER NOT NULL ,dateOfBirth DATE ,name VARCHAR (25) ,position VARCHAR (50) ,stadiumName VARCHAR (50) ,identifier INTEGER ,country VARCHAR (25) ,PRIMARY KEY (number) ,FOREIGN KEY (stadiumName) REFERENCES Stadiums(stadiumName) ,FOREIGN KEY (identifier) REFERENCES Matches(identifier) ,FOREIGN KEY (country) REFERENCES Team(country) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE PlayersInGame ( number INTEGER NOT NULL ,numberOfYellowCards INTEGER ,redCard BOOLEAN ,minuteEntered INTEGER ,minuteLeft INTEGER ,detailedPosition VARCHAR (50) ,stadiumName VARCHAR (50) ,identifier INTEGER NOT NULL ,country VARCHAR (50) ,PRIMARY KEY (number,identifier) ,FOREIGN KEY (number) REFERENCES Players(number) ,FOREIGN KEY (stadiumName) REFERENCES Stadiums(stadiumName) ,FOREIGN KEY (identifier) REFERENCES Matches(identifier) ,FOREIGN KEY (country) REFERENCES Team(country) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE GoalsScored ( occurance INTEGER NOT NULL ,minute INTEGER ,penaltyKick BOOLEAN ,stadiumName VARCHAR (50) ,identifier INTEGER NOT NULL ,number INTEGER NOT NULL ,PRIMARY KEY (occurance,identifier) ,FOREIGN KEY (stadiumName) REFERENCES Stadiums(stadiumName) ,FOREIGN KEY (identifier) REFERENCES Matches(identifier) ,FOREIGN KEY (number) REFERENCES Players (number) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Coaches ( name VARCHAR (50) NOT NULL ,dateOfBirth DATE ,role VARCHAR (50) ,stadiumName VARCHAR (50) ,identifier INTEGER ,country VARCHAR (50) ,PRIMARY KEY (name) ,FOREIGN KEY (stadiumName) REFERENCES Stadiums(stadiumName) ,FOREIGN KEY (identifier) REFERENCES Matches(identifier) ,FOREIGN KEY (country) REFERENCES Team(country) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Referees ( refID INTEGER NOT NULL ,name VARCHAR (50) ,yearsOfExperience INTEGER ,country VARCHAR (50) ,PRIMARY KEY (refID) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE RefereesInGame ( refID INTEGER NOT NULL ,name VARCHAR (50) ,role VARCHAR (50) NOT NULL ,stadiumName VARCHAR (50) ,identifier INTEGER NOT NULL ,PRIMARY KEY (refID,identifier) ,FOREIGN KEY (refID) REFERENCES Referees(refID) ,FOREIGN KEY (stadiumName) REFERENCES Stadiums(stadiumName) ,FOREIGN KEY (identifier) REFERENCES Matches(identifier) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Seat ( seatNumber INTEGER NOT NULL ,seatSection CHAR(1) ,basePrice FLOAT ,stadiumName VARCHAR (50) ,identifier INTEGER NOT NULL ,PRIMARY KEY (seatNumber,identifier) ,FOREIGN KEY (stadiumName) REFERENCES Stadiums(stadiumName) ,FOREIGN KEY (identifier) REFERENCES Matches(identifier) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE Tickets ( verificationNumber INTEGER NOT NULL ,finalPrice FLOAT ,stadiumName VARCHAR (50) ,seatNumber INTEGER NOT NULL ,identifier INTEGER NOT NULL ,PRIMARY KEY (verificationNumber) ,FOREIGN KEY (stadiumName) REFERENCES Stadiums(stadiumName) ,FOREIGN KEY (seatNumber,identifier) REFERENCES Seat(seatNumber,identifier) ,FOREIGN KEY (identifier) REFERENCES Matches(identifier) )
+DB20000I  The SQL command completed successfully.
+
+db2 => db2 => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => db2 (cont.) => CREATE TABLE User ( password VARCHAR (50) NOT NULL ,name VARCHAR (50) ,paymentInfo VARCHAR (50) ,email VARCHAR (50) ,verificationNumber INTEGER ,PRIMARY KEY (password) ,FOREIGN KEY (verificationNumber) REFERENCES Tickets (verificationNumber) )
+DB20000I  The SQL command completed successfully.
+
+db2 => 

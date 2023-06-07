@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/createtbl.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/droptbl.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/loaddata.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/question5a.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/question5b.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/question5c.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/question5d.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/question6.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/question6b.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/question7.sql" dialect="GenericSQL" />
+    <file url="PROJECT" dialect="GenericSQL" />
+  </component>
+</project>
