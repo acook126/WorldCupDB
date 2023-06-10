@@ -1,4 +1,0 @@
-SELECT DISTINCT p.number,g.occurance
-FROM playersInGame p,GOALSSCORED g
-WHERE p.COUNTRY='Canada' AND p.IDENTIFIER=1566 AND p.NUMBER=g.NUMBER
-;

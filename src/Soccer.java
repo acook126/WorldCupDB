@@ -9,15 +9,8 @@ public class Soccer {
         try { DriverManager.registerDriver ( new com.ibm.db2.jcc.DB2Driver() ) ; }
         catch (Exception cnfe){ System.out.println("Class not found"); }
 
-        // This is the url you must use for DB2.
-        //Note: This url may not valid now ! Check for the correct year and semester and server name.
-        String url = "jdbc:db2://winter2023-comp421.cs.mcgill.ca:50000/cs421";
+        //Deleted code that contained personal info regarding connecting to the database
 
-        //REMEMBER to remove your user id and password before submitting your code!!
-        String your_userid ="cs421g138";
-        String your_password ="Project2421data";
-        //AS AN ALTERNATIVE, you can just set your password in the shell environment in the Unix (as shown below) and read it from there.
-        //$  export SOCSPASSWD=yoursocspasswd
         if(your_userid == null && (your_userid = System.getenv("SOCSUSER")) == null)
         {
             System.err.println("Error!! do not have a password to connect to the database!");
@@ -321,7 +314,7 @@ public class Soccer {
                 break;
             }
         }
-        // Finally but importantly close the statement and connection
+        // Finally close the statement and connection
         statement.close ( ) ;
         con.close ( ) ;
     }
