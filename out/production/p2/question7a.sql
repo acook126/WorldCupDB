@@ -1,3 +1,0 @@
-ALTER TABLE PLAYERS
-    ADD CONSTRAINT check_shirtnumber
-        CHECK ( NUMBER BETWEEN 1 AND 99);
